@@ -1,4 +1,7 @@
 *.pptx
-__pycache__
 *.ipynb
 *.pdf
+*.tex
+
+__pycache__
+build/

@@ -24,12 +24,15 @@ if __name__ == "__main__":
     plt.rcParams['font.size'] = 14
 
     for (i, length) in enumerate(length_list):
-        scores = scores_list[i]
-        ax[i//2, i%2].hist(scores[10000:], bins=50, density=True, alpha=0.5, color='red', label=f"LENGTH={length}")
+        scores = scores_list[i][10000:]
+        scores = scores[scores > 0]
+        ax[i//2, i%2].hist(np.log10(scores), bins=100, density=True, alpha=0.5, color='red', label=f"LENGTH={length}")
         ax[i//2, i%2].set_title(f"LENGTH={length}")
-        ax[i//2, i%2].set_xlabel('Score')
+        ax[i//2, i%2].set_xlabel('log(Score)')
         ax[i//2, i%2].set_ylabel('Density')
         ax[i//2, i%2].set_yscale('log')
+        # ax[i//2, i%2].set_xscale('log')
+        # ax[i//2, i%2].set_xlim((1,1000))
         ax[i//2, i%2].grid(True)
     
     plt.savefig("ScoreDist.png")
