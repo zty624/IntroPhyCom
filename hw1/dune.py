@@ -1,3 +1,4 @@
+from collections import deque
 import numpy as np
 
 LENGTH = 32
@@ -10,19 +11,19 @@ def islegal(coor, length=LENGTH):
 
 def neighbors(coors, length=LENGTH):
     res = []
-    for coor in coors:
-        res_list = [(coor[0]-1, coor[1]), (coor[0]+1, coor[1]),
-                    (coor[0], coor[1]-1), (coor[0], coor[1]+1)]
+    for (row, col) in coors:
+        res_list = [(row-1, col), (row+1, col),
+                    (row, col-1), (row, col+1)]
         for i in res_list:
             if islegal(i, length):
                 res.append(i)
     return res
 
 def depletion(dune, init_coor, length=LENGTH):
-    coors = [init_coor]
+    coors = deque([init_coor])
     score = 0
     while len(coors) > 0:
-        (row, col) = coors.pop(0)
+        (row, col) = coors.popleft()
         if dune[row, col] < 4:
             continue
         dune[row, col] -= 4

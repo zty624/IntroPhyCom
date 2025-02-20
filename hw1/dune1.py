@@ -25,6 +25,7 @@ if __name__ == "__main__":
     ax1.set_ylabel('Score', color=color)
     ax1.plot(x_array, scores, color=color)
     ax1.tick_params(axis='y', labelcolor=color)
+    ax1.set_yscale('log')
 
     ax2 = ax1.twinx()
     color = 'tab:red'
