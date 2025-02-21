@@ -6,3 +6,4 @@ hw*.md
 
 __pycache__
 build/
+.vscode/

@@ -3,6 +3,8 @@ import numpy as np
 
 from dune import *
 
+FILEPATH = "hw1/len128.txt"
+
 if __name__ == "__main__":
     length_list = [16, 32, 48, 64]
     scores_list = []
@@ -26,10 +28,18 @@ if __name__ == "__main__":
     for (i, length) in enumerate(length_list):
         scores = scores_list[i][10000:]
         bins = np.logspace(np.log10(1), np.log10(np.max(scores)), 100)
-        hist, bin_edges = np.histogram(scores[scores > 0], bins=bins)
-        # hist, bin_edges = np.histogram(scores[scores > 0], bins=100)
+        # hist, bin_edges = np.histogram(scores[scores > 0], bins=bins)
+        hist, bin_edges = np.histogram(scores[scores > 0], bins=100)
         hist = hist / len(scores)
         plt.plot(bin_edges[:-1], hist, label=f"LENGTH={length}")
+
+    # C++ output added
+    with open(FILEPATH, "r") as f:
+        scores = np.array([int(line.strip()) for line in f.readlines()])
+    scores = scores[10000:]
+    hist, bin_edges = np.histogram(scores[scores > 0], bins=100)
+    hist = hist / len(scores)
+    plt.plot(bin_edges[:-1], hist, label="LEGHTH=128", color='black', linestyle='--')
 
     plt.xlabel('Score')
     plt.ylabel('Density')
