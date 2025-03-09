@@ -75,7 +75,7 @@ int main() {
 
     for (int i = 0; i < num; i++) {
         int score = iterate(dune);
-        file << score << endl;
+        file << score << "\n";
     }
     file.close();
     return 0;

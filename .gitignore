@@ -2,6 +2,7 @@
 *.ipynb
 *.pdf
 *.tex
+*.rar
 hw*.md
 
 __pycache__
