@@ -3,8 +3,9 @@
 *.tex
 *.rar
 hw*.md
+*output*
 
 __pycache__
 build/
 .vscode/
-mycpplib/
+lib/

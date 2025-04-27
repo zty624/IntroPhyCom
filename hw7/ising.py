@@ -3,7 +3,7 @@ import numpy as np
 import os
 import re
 
-def txt_list(path="./hw7"):
+def txt_list(path="./hw7/data"):
     return [f for f in os.listdir(path) if f.endswith('.txt') and f.startswith("lattice")]
 
 def corr_func(m1:np.ndarray, m2:np.ndarray) -> np.ndarray:
@@ -34,7 +34,7 @@ if __name__ == "__main__":
     lattice_list = []
     minEnergy = -4 * lattice_size * lattice_size
 
-    with open(os.path.join("./hw7", filename), "r") as f:
+    with open(os.path.join("./hw7/data", filename), "r") as f:
         lines = f.readlines()
         demo = np.zeros((lattice_size, lattice_size * 2))
         for i in range(0, len(lines), lattice_size + 2):
@@ -55,7 +55,7 @@ if __name__ == "__main__":
             if energy < minEnergy:
                 print(f"New Energy found {energy} < {minEnergy} at {i}")
     
-    for i in range(3):
+    for i in range(20):
         xygrid = np.meshgrid(np.arange(lattice_size), np.arange(lattice_size))
         plt.figure()
         plt.scatter(xygrid[0], xygrid[1], c=lattice_list[i][:, ::2].flatten(), cmap='RdBu', vmin=-1, vmax=1)
